@@ -1,0 +1,4 @@
+data:text/html,<p style="background: #d22; position: fixed; left: 0; top: 0; right: 0; bottom: 0; margin: 0; padding: 1em; color: #eee; font-family: Verdana; font-weight: bold;" contenteditable="true" id="p">ready</p><script>var p = document.getElementById("p"); p.focus();</script>
+
+data:text/html,<body id="b"><p contenteditable id="p"></p><button onclick="window.open('data:application/octet-stream,' + p.innerHTML);">download</button><script>function g(i){return document.getElementById(i);} var b = g("b"), bs = b.style, p = g("p"), ps = p.style; bs.margin = "0"; bs.background = "red"; bs.color = "white"; bs.fontWeight = "bold"; ps.margin = "8px"; p.focus();</script></body>
+
