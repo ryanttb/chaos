@@ -1,0 +1,69 @@
+﻿== 2012-08-18
+
+=== book!
+
+Download this book: http://blogs.msdn.com/b/microsoft_press/archive/2012/06/04/free-ebook-programming-windows-8-apps-with-html-css-and-javascript-first-preview.aspx
+
+=== sessionState
+
+I'm not sure if I can use window.sessionStorage but there's WinJS.Application.sessionState. I wonder if the API is the same.
+
+Here's the API URL in MSDN: http://msdn.microsoft.com/en-us/library/windows/apps/br211377.aspx
+
+The WinJS.UI section is under Controls heading. There's also Windows.UI.WebUI.
+
+The WinJS.Application doc page times out for me. Here's some other one: https://msdn.microsoft.com/en-us/subscriptions/securedownloads/br229774.aspx
+
+Hmm, not the same API: Any data stored on sessionState will automatically be serialized. Nice!
+
+=== local
+
+But that's session. The map's extent should survive session pauses, no? I think I want WinJS.Application.local which as a similar to web storage API but not the same. Ah, local is an actual, physical file. Going to check HTML5 localStorage instead.
+
+Nice, we do have localStorage. This is friendly!
+
+Hmm, after it closes, the tile is still around. However, at some point I lost my bbox and thus, localStorage ;(
+
+Maybe that was only because I forced a rebuild and the new binary has a different signature.
+
+localStorage doesn't always stay. I'm not sure what's up with that.
+
+I tried Application.local, but I'm getting exceptions even by just calling .exists("bbox");
+
+I may have killed the app before saving.
+
+=== innerHTML
+
+That [object] text was just because I was using toStaticHTML on a jQuery object, existingChildren. Doh! Works great now!
+
+=== suspend/checkpoint
+
+I'm having trouble getting suspend to trigger. It triggers when the user is closing the app. You can't stop termination at that point but you can save data.
+
+=== adding search
+
+Added search via Add New Item. Following this quickstart: http://msdn.microsoft.com/library/windows/apps/Hh465238
+
+onquerysubmitted fires when your app is the main app. It "navigates" to the search results page. It sends search args but I don't know how they're sent to the page yet.
+
+"Alternatively, you can register for the suggestionsrequested event and build your own list of suggestions."
+
+I want to do this but can't find the property: "Use searchPane.showOnKeyboardInput so that the search box receives input when a user types."
+
+The searchData function gets everything. Make sure to check for empty queryText and do something useful.
+
+Hmm, not sure I can get an async result for searchData.
+
+searchData returns a WinJS.Binding.List object. How do I add items one at a time? Maybe .push? It's a bad day for the MS Win8 docs to go down. Yeah, .push! Thank's Intellisence!
+
+Ok, so navigation doesn't work in the blank app template. If you want to use search, you need to start with at least the navigation template. Sheesh!
+
+Also, put the map on the home page, not default.
+
+=== jQuery
+
+jQuery does cause errors but appears to work anyway.
+
+=== web
+
+I can't access web content easily in Windows Store apps.

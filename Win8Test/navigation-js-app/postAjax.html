@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>postAjax</title>
+  <meta name="author" content="Ryan Westphal" />
+  <meta name="description" content="use postMessage to broker a jQuery ajax call in Windows 8" />
+</head>
+<body>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  <script>
+    window.addEventListener("message", function (e) {
+      var request = JSON.parse(e.data);
+
+      $.ajax($.extend(request, {
+        success: function (results) {
+          if (results) {
+            var resultsJson = JSON.stringify({
+              originalUrl: request.url,
+              results: results
+            });
+            e.source.postMessage(resultsJson, e.origin);
+          }
+        }
+      }));
+    }, true);
+  </script>
+</body>
+</html>
