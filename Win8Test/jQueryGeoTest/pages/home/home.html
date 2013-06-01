@@ -11,6 +11,25 @@
 
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/pages/home/home.css" rel="stylesheet" />
+    <style type="text/css">
+      .geo-label {
+        color: #222;
+        font-weight: bold;
+      }
+
+      .info {
+        background: #dedede;
+        padding: 8px;
+        position: fixed;
+        right: 8px;
+        top: 8px;
+
+      }
+
+      .modes { margin: .5em 0; }
+
+
+    </style>
     <script src="/pages/home/home.js"></script>
 </head>
 <body>
@@ -24,6 +43,57 @@
         </header>
         <section aria-label="Main content" role="main">
           <div id="map"></div>
+
+    <div class="info">
+
+        <section>
+          <h2>mode</h2>
+
+          <div id="modeOptions">
+            <div class="modes">
+              <input type="radio" id="static" name="mode" value="static" /><label for="static">static</label>
+              <input type="radio" id="pan" name="mode" value="pan" checked="checked" /><label for="pan">pan</label>
+              <input type="radio" id="click" name="mode" value="click" /><label for="click">click</label>
+              <input type="radio" id="zoom" name="mode" value="zoom" /><label for="zoom">zoom</label>
+            </div>
+
+            <div class="modes">
+              <input type="radio" id="drawPoint" name="mode" value="drawPoint" /><label for="drawPoint">drawPoint</label>
+              <input type="radio" id="drawLineString" name="mode" value="drawLineString" /><label for="drawLineString">drawLineString</label>
+              <input type="radio" id="drawPolygon" name="mode" value="drawPolygon" /><label for="drawPolygon">drawPolygon</label>
+            </div>
+
+            <div class="modes">
+              <input type="radio" id="dragBox" name="mode" value="dragBox" /><label for="dragBox">dragBox</label>
+              <input type="radio" id="dragCircle" name="mode" value="dragCircle" /><label for="dragCircle">dragCircle</label>
+            </div>
+
+            <div class="modes">
+              <!--
+              jQuery Geo supports custom modes by letting you set the mode option to
+              any string you want. You can set a cursor for your custom mode using the
+              cursors option. When on a custom mode, you will get the geomapclick event.
+              -->
+              <input type="radio" id="remove" name="mode" value="remove" /><label for="remove">remove</label>
+            </div>
+
+            <div class="modes">
+              <input type="radio" id="measureLength" name="mode" value="measureLength" /><label for="measureLength">measureLength</label>
+              <input type="radio" id="measureArea" name="mode" value="measureArea" /><label for="measureArea">measureArea</label>
+            </div>
+          </div>
+        </section>
+
+        <section id="shapeLabels">
+          <label>
+            <h2>label</h2>
+            <input type="text" name="shapeLabel" />
+          </label>
+        </section>
+
+
+    </div>
+
         </section>
     </div>
 </body>

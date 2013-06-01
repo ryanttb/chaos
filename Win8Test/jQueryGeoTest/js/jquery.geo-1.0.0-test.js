@@ -4256,7 +4256,7 @@ $.Widget.prototype = {
       }
 
 
-      geographics._$labelsContainerBack.html( geographics._labelsHtml ).find("a").css({
+      geographics._$labelsContainerBack.html( window.toStaticHTML( geographics._labelsHtml ) ).find("a").css({
         position: "relative",
         zIndex: 1,
         display: "inline-block",
@@ -4270,12 +4270,9 @@ $.Widget.prototype = {
         top: 0,
         width: geographics._width,
         height: geographics._height
-      } );
-      
-      geographics._$elem.prepend( geographics._$labelsContainerFront );
+      } ).prependTo( geographics._$elem );
 
       geographics._$labelsContainerBack = oldLabelsContainer.detach();
-
 
       geographics._timeoutEnd = null;
     },
@@ -5241,7 +5238,7 @@ $.Widget.prototype = {
       var contentSizeCss = "width:" + this._contentBounds["width"] + "px; height:" + this._contentBounds["height"] + "px; margin:0; padding:0;",
           contentPosCss = "position:absolute; left:0; top:0;";
 
-      this._$elem.prepend(window.toStaticHTML('<div class="geo-event-target geo-content-frame" style="position:absolute; left:' + this._contentBounds.x + 'px; top:' + this._contentBounds.y + 'px;' + contentSizeCss + 'overflow:hidden; -khtml-user-select:none; -moz-user-select:none; -webkit-user-select:none; user-select:none;" unselectable="on"></div>'));
+      this._$elem.prepend( window.toStaticHTML( '<div class="geo-event-target geo-content-frame" style="position:absolute; left:' + this._contentBounds.x + 'px; top:' + this._contentBounds.y + 'px;' + contentSizeCss + 'overflow:hidden; -khtml-user-select:none; -moz-user-select:none; -webkit-user-select:none; user-select:none;" unselectable="on"></div>' ) );
       this._$eventTarget = this._$contentFrame = this._$elem.children(':first');
 
       this._$contentFrame.append('<div class="geo-services-container" style="' + contentPosCss + contentSizeCss + '"></div>');
